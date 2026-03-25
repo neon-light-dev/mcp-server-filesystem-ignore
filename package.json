@@ -1,0 +1,57 @@
+{
+  "name": "@neonlightdev/mcp-server-filesystem-ignore",
+  "version": "0.1.0",
+  "description": "Standalone MCP filesystem server fork with opt-in ignore-file filtering for listing, traversal, and search.",
+  "license": "SEE LICENSE IN LICENSE",
+  "mcpName": "io.github.neonlight/server-filesystem-ignore",
+  "author": "neonlight.io",
+  "homepage": "https://github.com/neon-light-dev/mcp-server-filesystem-ignore",
+  "bugs": "https://github.com/neon-light-dev/mcp-server-filesystem-ignore/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neon-light-dev/mcp-server-filesystem-ignore.git"
+  },
+  "type": "module",
+  "bin": {
+    "mcp-server-filesystem-ignore": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md",
+    "UPSTREAM.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc && shx chmod +x dist/*.js",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "test": "vitest run --coverage"
+  },
+  "keywords": [
+    "mcp",
+    "filesystem",
+    "ignore",
+    "gitignore",
+    "cursorignore",
+    "claudeignore"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "diff": "^8.0.3",
+    "ignore": "^7.0.4",
+    "minimatch": "^10.0.1",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/diff": "^5.0.9",
+    "@types/node": "^22.15.3",
+    "@vitest/coverage-v8": "^2.1.8",
+    "shx": "^0.3.4",
+    "typescript": "^5.8.2",
+    "vitest": "^2.1.8"
+  }
+}
