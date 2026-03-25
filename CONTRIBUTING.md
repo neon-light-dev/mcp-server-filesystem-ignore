@@ -14,6 +14,7 @@ npm run build
 - Preserve upstream behavior unless the change is part of this fork’s documented ignore support.
 - Add or update tests for any change that touches listing, traversal, search, path normalization, or path validation.
 - Document user-visible behavior changes in `README.md`.
+- If you change publish behavior, keep `.github/workflows/publish.yml` and the npm trusted-publisher instructions in sync.
 
 ## Upstream Sync Expectations
 
