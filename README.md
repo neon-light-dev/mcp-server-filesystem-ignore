@@ -177,6 +177,8 @@ Notes:
 
 This repo includes [`publish.yml`](./.github/workflows/publish.yml) for npm trusted publishing.
 
+The workflow is currently pinned to `actions/checkout@v6` and `actions/setup-node@v6`, which GitHub documents as Node 24-based releases. If you see a Node 20 deprecation warning again, it usually means an older workflow still references `@v4` or `@v5`.
+
 1. Open the package settings on npmjs.com.
 2. In the `Trusted Publisher` section, choose `GitHub Actions`.
 3. Configure:
@@ -207,6 +209,7 @@ Trusted publishing notes:
 - npm trusted publishing currently requires GitHub-hosted runners.
 - npm documents that trusted publishing requires npm CLI `11.5.1` or later and Node `22.14.0` or higher.
 - When trusted publishing is used from a public GitHub repository for a public npm package, npm automatically generates provenance for the published package.
+- The GitHub Actions pieces need to stay on current majors because older `checkout` and `setup-node` majors still run on Node 20 and trigger the deprecation warning.
 
 ## How To Keep This Fork In Sync With Upstream
 
