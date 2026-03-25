@@ -9,7 +9,7 @@
   "bugs": "https://github.com/neon-light-dev/mcp-server-filesystem-ignore/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/neon-light-dev/mcp-server-filesystem-ignore.git"
+    "url": "git+https://github.com/neon-light-dev/mcp-server-filesystem-ignore.git"
   },
   "type": "module",
   "bin": {

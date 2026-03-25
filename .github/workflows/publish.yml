@@ -33,5 +33,14 @@ jobs:
       - name: Verify publish contents
         run: npm pack --dry-run
 
+      - name: Show release metadata
+        run: |
+          node - <<'NODE'
+          const p = require('./package.json');
+          console.log(`Publishing ${p.name}@${p.version}`);
+          NODE
+
       - name: Publish to npm with trusted publishing
-        run: npm publish --access public
+        env:
+          npm_config_loglevel: verbose
+        run: npm publish --access public --loglevel verbose
