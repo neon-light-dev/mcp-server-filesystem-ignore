@@ -50,6 +50,139 @@ npx -y @neonlightdev/mcp-server-filesystem-ignore /absolute/project/path
 
 Use MCP roots as usual if your client supports them. Ignore support remains opt-in; if you do not pass ignore-related flags, listing, traversal, and search behave like the upstream filesystem server.
 
+## Copy/Paste JSON Examples
+
+Use absolute paths in MCP client configs. Relative paths are a common source of startup failures in desktop clients.
+
+### Msty Studio JSON import
+
+Msty Studio's Toolbox JSON import expects the server object itself, not the outer `mcpServers` wrapper.
+
+```json
+{
+  "command": "npx",
+  "args": [
+    "-y",
+    "@neonlightdev/mcp-server-filesystem-ignore",
+    "--respect-gitignore",
+    "--ignore-file",
+    ".cursorignore",
+    "/ABSOLUTE/PROJECT/PATH"
+  ]
+}
+```
+
+Example with multiple ignore files:
+
+```json
+{
+  "command": "npx",
+  "args": [
+    "-y",
+    "@neonlightdev/mcp-server-filesystem-ignore",
+    "--ignore-file",
+    ".gitignore",
+    "--ignore-file",
+    ".cursorignore",
+    "--ignore-file",
+    "/ABSOLUTE/PATH/TO/custom.ignore",
+    "/ABSOLUTE/PROJECT/PATH"
+  ]
+}
+```
+
+Note: MCP support is in Msty Studio. The older Msty App 1.x docs explicitly note that MCP support is not available there.
+
+### Gemini CLI `settings.json`
+
+Gemini CLI uses an `mcpServers` object in `~/.gemini/settings.json` or `.gemini/settings.json`.
+
+```json
+{
+  "mcpServers": {
+    "filesystem-ignore": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@neonlightdev/mcp-server-filesystem-ignore",
+        "--respect-gitignore",
+        "/ABSOLUTE/PROJECT/PATH"
+      ],
+      "trust": true
+    }
+  }
+}
+```
+
+Gemini CLI example with multiple ignore files:
+
+```json
+{
+  "mcpServers": {
+    "filesystem-ignore": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@neonlightdev/mcp-server-filesystem-ignore",
+        "--ignore-file",
+        ".gitignore",
+        "--ignore-file",
+        ".cursorignore",
+        "--ignore-file",
+        ".mcpignore",
+        "/ABSOLUTE/PROJECT/PATH"
+      ],
+      "trust": true
+    }
+  }
+}
+```
+
+### Claude Desktop / LM Studio / Cursor-style `mcpServers`
+
+Several MCP hosts use the same `mcpServers` JSON shape. If your client expects a full config block, this is the safest starting point:
+
+```json
+{
+  "mcpServers": {
+    "filesystem-ignore": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@neonlightdev/mcp-server-filesystem-ignore",
+        "--respect-gitignore",
+        "/ABSOLUTE/PROJECT/PATH"
+      ]
+    }
+  }
+}
+```
+
+Example with multiple ignore files:
+
+```json
+{
+  "mcpServers": {
+    "filesystem-ignore": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@neonlightdev/mcp-server-filesystem-ignore",
+        "--ignore-file",
+        ".gitignore",
+        "--ignore-file",
+        ".cursorignore",
+        "--ignore-file",
+        "/ABSOLUTE/PATH/TO/custom.ignore",
+        "/ABSOLUTE/PROJECT/PATH"
+      ]
+    }
+  }
+}
+```
+
+If your client only asks for a server JSON payload rather than a full config file, copy just the inner object from the examples above.
+
 ## Ignore-File Support
 
 ### CLI Flags
